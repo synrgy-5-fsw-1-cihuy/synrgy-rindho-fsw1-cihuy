@@ -1,0 +1,76 @@
+@use "sass:map";
+html {
+    scroll-behavior: smooth;
+}
+#hero {
+    > .container {
+        > .row {
+            min-height: 414px;
+        }
+    } 
+}
+#car-picture {
+    position: relative;
+    @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+        > img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform-origin: bottom right;
+            transform: scale(1.15)
+        }
+    }
+}
+#lists {
+    list-style-type: none;
+    padding-left: 0;
+    > li {
+        /** the image will be vertically aligned in the center **/
+        background: url('../picture/list-bullet.svg') left center no-repeat; 
+
+        /** move the text to the right **/
+        padding-left: 30px;
+    }
+}
+.question {
+    &.active {
+        > .answer {
+            display: initial;
+            opacity: initial;
+            height: initial;
+        }
+    }
+    > .answer {
+        display: none;
+        opacity: 0;
+        height: 0;
+    }
+}
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 41px;
+    border-radius: 50%;
+    color: $light;
+    > i {
+        margin: auto;
+    }
+}
+@each $color-name, $color-value in $theme-colors {
+    .circle-icon {
+        &.circle-icon-#{$color-name} {
+            background-color: $color-value;
+        }
+        &.circle-icon-outline-#{$color-name} {
+            background-color: white;
+            border: 1px solid $dark;
+            color: $dark;
+            &:hover {
+                background-color: $color-value;
+                border: 1px solid $color-value;
+                color: $light;
+            }
+        }
+    }
+}

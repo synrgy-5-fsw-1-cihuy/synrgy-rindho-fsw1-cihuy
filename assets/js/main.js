@@ -46,4 +46,10 @@ $(document).ready(function(){
             target.addClass('show')
         }
     })
+    $('.navbar .nav-item').on('click', function (event) {
+        let target = $($('.navbar .navbar-toggler').attr('data-bs-target'))
+        if(target.hasClass('show')) {
+            target.removeClass('show')
+        }
+    })
 });

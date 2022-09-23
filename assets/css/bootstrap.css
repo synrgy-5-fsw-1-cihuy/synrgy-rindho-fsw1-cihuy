@@ -13203,8 +13203,8 @@ html {
     right: 0;
     -webkit-transform-origin: bottom right;
             transform-origin: bottom right;
-    -webkit-transform: scale(1.15);
-            transform: scale(1.15);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 
@@ -13213,9 +13213,7 @@ html {
   padding-left: 0;
 }
 #lists > li {
-  /** the image will be vertically aligned in the center **/
   background: url("../picture/list-bullet.svg") left center no-repeat;
-  /** move the text to the right **/
   padding-left: 30px;
 }
 
@@ -13352,4 +13350,37 @@ html {
   background-color: #212529;
   border: 1px solid #212529;
   color: #e9ecef;
+}
+
+#navbar-challenge-2 {
+  position: fixed;
+  z-index: 10;
+}
+#navbar-challenge-2 ~ .navbar-overlay {
+  z-index: 9;
+  opacity: 0.5;
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #212529;
+  left: 0;
+  top: 0;
+}
+#navbar-challenge-2.show {
+  background-color: #e9ecef;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  min-width: 50vw;
+  padding: 40px 20px;
+}
+#navbar-challenge-2.show ~ .navbar-overlay {
+  display: block;
+}
+
+@media screen and (min-width: 992px) {
+  #navbar-challenge-2 {
+    position: initial;
+  }
 }

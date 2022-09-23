@@ -13,11 +13,17 @@
 <body>
     <nav class="fixed-top navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Challenge 1</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">Challenge 2</a>
+            <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbar-challenge-2">
+                <div class="d-flex mx-2 justify-content-between align-items-center my-2">
+                    <h5 class="mb-0">BCR</h5>
+                    <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fas fa-xmark"></span>
+                    </button>
+                </div>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
                         <a class="nav-link text-dark" href="#our-services">Our Service</a>
@@ -36,6 +42,7 @@
                     </li>
                 </ul>
             </div>
+            <div class="navbar-overlay navbar-toggler" data-bs-target="#navbar-challenge-2"></div>
         </div>
     </nav>
     <section class="bg-light pt-5" id="hero">
@@ -312,52 +319,13 @@
                 </div>
                 <div class="col-12 col-lg-2">
                     <p class="fs-5">Copyright Binar 2022</p>
-                    <h3>Challenge 1</h3>
+                    <h3>Challenge 2</h3>
                 </div>
             </div>
         </div>
     </footer>
     <script src="assets/js/jquery-3.6.1.min.js"></script>
     <script src="assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Testimonial Carousel
-            let owlNavPrev = '<div class="circle-icon circle-icon-outline-success mt-3 mx-4"><i class="fs-5 fa-solid fa-angle-left"></i></div>'
-            let owlNavNext = '<div class="circle-icon circle-icon-outline-success mt-3 mx-4"><i class="fs-5 fa-solid fa-angle-right"></i></div>'
-            $(".owl-carousel").owlCarousel({
-                center: true,
-                items: 1,
-                loop: true,
-                nav: true,
-                margin: 30,
-                navText: [owlNavPrev, owlNavNext],
-                responsive: {
-                    600: {
-                        items: 2
-                    }
-                }
-            });
-
-            // Hero Car Offset
-            let lenleft = $(".container").offset().left
-            let pictures =  document.getElementById("car-picture")
-            let picture = pictures.getElementsByTagName("img")
-            picture[0].style.right = "-"+lenleft+"px"
-    
-            // FAQ dropdown
-            let questions = document.getElementsByClassName("question")
-            Array.prototype.forEach.call(questions, function(question) {
-                let button = question.getElementsByTagName("button")
-    
-                button[0].addEventListener("click", function (event) {
-                    if(question.classList.contains("active")) {
-                        question.classList.remove("active")
-                    } else {
-                        question.classList.add("active")
-                    }
-                })
-            });
-        });
-    </script>
+    <script src="assets/js/main-dist.min.js"></script>
 </body>
 </html>

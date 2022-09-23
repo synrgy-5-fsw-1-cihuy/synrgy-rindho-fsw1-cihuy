@@ -17,7 +17,7 @@ html {
             bottom: 0;
             right: 0;
             transform-origin: bottom right;
-            transform: scale(1.15)
+            transform: scale(1.1)
         }
     }
 }
@@ -25,10 +25,7 @@ html {
     list-style-type: none;
     padding-left: 0;
     > li {
-        /** the image will be vertically aligned in the center **/
         background: url('../picture/list-bullet.svg') left center no-repeat; 
-
-        /** move the text to the right **/
         padding-left: 30px;
     }
 }
@@ -72,5 +69,36 @@ html {
                 color: $light;
             }
         }
+    }
+}
+#navbar-challenge-2 {
+    position: fixed;
+    z-index: 10;
+    ~ .navbar-overlay {
+        z-index: 9;
+        opacity: 0.5;
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: $dark;
+        left: 0;
+        top: 0;
+    }
+    &.show {
+        background-color: $light;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        min-width: 50vw;
+        padding: 40px 20px;
+        ~ .navbar-overlay {
+            display: block;
+        }
+    }
+}
+@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+    #navbar-challenge-2 {
+        position: initial;
     }
 }

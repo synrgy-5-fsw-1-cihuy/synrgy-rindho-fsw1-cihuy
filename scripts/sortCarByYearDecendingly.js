@@ -11,7 +11,6 @@ function sortCarByYearDescendingly(cars) {
     var b = this[x];
     this[x] = this[y];
     this[y] = b;
-    return this;
   }
 
   Array.prototype.bubbleSort = function() {

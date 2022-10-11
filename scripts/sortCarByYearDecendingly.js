@@ -7,18 +7,18 @@ function sortCarByYearDescendingly(cars) {
   const result = [...cars];
 
   // Tulis code-mu disini
-  Array.prototype.swap = function(x, y) {
+  Array.prototype.swap = function (x, y) {
     var b = this[x];
     this[x] = this[y];
     this[y] = b;
   }
 
-  Array.prototype.bubbleSort = function() {
+  Array.prototype.bubbleSort = function () {
     let n = this.length
-    for(let i = 0; i < n-1; i++) {
-      for(let j = 0; j < n-i-1; j++) {
-        if(this[j].year < this[j+1].year) {
-          this.swap(j, j+1)
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        if (this[j].year < this[j + 1].year) {
+          this.swap(j, j + 1)
         }
       }
     }

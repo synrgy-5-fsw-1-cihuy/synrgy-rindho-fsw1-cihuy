@@ -6,12 +6,10 @@ function filterCarByAvailability(cars) {
   const result = [];
 
   // Tulis code-mu disini
-  for (let i = 0; i < cars.length; i++) {
-    let temp = cars[i].available
-    if (temp == true) {
-      result.push(cars[i])
-    }
-  }
+  cars.forEach(el => {
+    if (el.available == true)
+      result.push(el)
+  })
 
   // Rubah code ini dengan array hasil filter berdasarkan availablity
   return result;

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "node-static": "^0.7.11",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "url": "^0.11.0"
   }
 }

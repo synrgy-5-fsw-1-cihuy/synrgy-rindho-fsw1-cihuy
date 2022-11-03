@@ -24,9 +24,9 @@ function onRequest(request, response) {
       response.writeHead(200);
       response.end(htmlReaderFile("index.html"));
       return;
-    case "/about":
+    case "/cari-mobil":
       response.writeHead(200);
-      response.end(htmlReaderFile("about.html"));
+      response.end(htmlReaderFile("cari-mobil.html"));
       return;
 
     default:

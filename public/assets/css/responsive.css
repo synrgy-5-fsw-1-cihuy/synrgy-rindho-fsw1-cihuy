@@ -1,0 +1,68 @@
+@media only screen and (max-width: 600px) {
+    .hero-title{
+        font-size: 36px;
+        line-height: 54px;
+        font-weight: 700;
+    }
+    .hero-sub{
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .hero-img{
+        width: 500px;
+    }
+    .our-title{
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+    }
+    .why-title{
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+
+        /* identical to box height, or 150% */
+        text-align: center;
+    }
+    .why-sub{
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 20px;
+
+        /* identical to box height, or 143% */
+        text-align: center;
+    }
+    .why-card{
+        padding: 16px;
+    }
+    .bg-darkblue{
+        padding: 58px;
+    }
+    .cta-title{
+        /* Heading/24/Bold */
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+
+        /* or 150% */
+        text-align: center;
+    }
+    .cta-sub{
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 20px;
+        color:#fff;
+        /* or 143% */
+        text-align: center;
+    }
+} 

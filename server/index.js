@@ -1,12 +1,8 @@
-console.log("Implement servermu disini yak 😝!");
-
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
 const path = require("path");
-const static = require("node-static");
 const PUBLIC_DIR = path.join(__dirname, "../public");
-const fileStatic = new static.Server(PUBLIC_DIR);
 
 const { PORT = 8000 } = process.env;
 
@@ -41,9 +37,14 @@ function onRequest(request, response) {
         json: "application/json",
         map: "application/json",
         txt: "text/plain",
+        ttf: "application/x-font-ttf",
+        woff2: "application/font-woff2"
       };
-      const pathname = url.parse(request.url, true).pathname;
-      fs.readFile("./public" + pathname, (err, file) => {
+      
+      let pathname = url.parse(request.url, true).pathname;
+      pathname = path.join(PUBLIC_DIR, pathname)
+
+      fs.readFile(pathname, (err, file) => {
         if (err) {
           response.status = 404;
           response.end("404 Not Found");

@@ -1,0 +1,104 @@
+@use "sass:map";
+html {
+    scroll-behavior: smooth;
+}
+#hero {
+    > .container {
+        > .row {
+            min-height: 414px;
+        }
+    } 
+}
+#car-picture {
+    position: relative;
+    @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+        > img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform-origin: bottom right;
+            transform: scale(1.1)
+        }
+    }
+}
+#lists {
+    list-style-type: none;
+    padding-left: 0;
+    > li {
+        background: url('../picture/list-bullet.svg') left center no-repeat; 
+        padding-left: 30px;
+    }
+}
+.question {
+    &.active {
+        > .answer {
+            display: initial;
+            opacity: initial;
+            height: initial;
+        }
+    }
+    > .answer {
+        display: none;
+        opacity: 0;
+        height: 0;
+    }
+}
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 41px;
+    border-radius: 50%;
+    color: $light;
+    > i {
+        margin: auto;
+    }
+}
+@each $color-name, $color-value in $theme-colors {
+    .circle-icon {
+        &.circle-icon-#{$color-name} {
+            background-color: $color-value;
+        }
+        &.circle-icon-outline-#{$color-name} {
+            background-color: white;
+            border: 1px solid $dark;
+            color: $dark;
+            &:hover {
+                background-color: $color-value;
+                border: 1px solid $color-value;
+                color: $light;
+            }
+        }
+    }
+}
+#navbar-challenge-2 {
+    position: fixed;
+    z-index: 10;
+    ~ .navbar-overlay {
+        z-index: 9;
+        opacity: 0.5;
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: $dark;
+        left: 0;
+        top: 0;
+    }
+    &.show {
+        background-color: $light;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        min-width: 50vw;
+        padding: 40px 20px;
+        ~ .navbar-overlay {
+            display: block;
+        }
+    }
+}
+@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+    #navbar-challenge-2 {
+        position: initial;
+    }
+}

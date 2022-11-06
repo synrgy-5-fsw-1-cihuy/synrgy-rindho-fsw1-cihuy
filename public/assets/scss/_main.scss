@@ -102,3 +102,13 @@ html {
         position: initial;
     }
 }
+
+#cars-container {
+    .card {
+        min-height: 570px;
+        .car-img {
+            object-fit: cover;
+            height: 200px;
+        }
+    }
+}

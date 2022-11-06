@@ -20,7 +20,7 @@ function onRequest(request, response) {
       response.writeHead(200);
       response.end(htmlReaderFile("index.html"));
       return;
-    case "/cari-mobil":
+    case "/cars":
       response.writeHead(200);
       response.end(htmlReaderFile("cari-mobil.html"));
       return;

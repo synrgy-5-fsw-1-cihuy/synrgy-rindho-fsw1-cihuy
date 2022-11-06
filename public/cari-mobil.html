@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,17 +13,22 @@
     <link rel="stylesheet" href="./assets/css/owl-carousel.min.css">
     <link rel="stylesheet" href="./assets/css/owl-theme-default.min.css">
 </head>
+
 <body>
     <nav class="fixed-top navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Challenge 2</a>
-            <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="./">Challenge 2</a>
+            <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-challenge-2">
                 <div class="d-flex mx-2 justify-content-between align-items-center my-2">
                     <h5 class="mb-0">BCR</h5>
-                    <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-challenge-2" aria-controls="navbar-challenge-2" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="fas fa-xmark"></span>
                     </button>
                 </div>
@@ -52,7 +58,8 @@
             <div class="row pt-5">
                 <div class="col-12 col-lg-6 align-self-center">
                     <h1>Sewa & Rental Mobil Terbaik di Kawasan (Lokasimu)</h1>
-                    <p class="fs-5 mt-4">Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
+                    <p class="fs-5 mt-4">Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik
+                        dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
                 </div>
                 <div class="col-12 col-lg-6" id="car-picture">
                     <img class="img-fluid" src="./assets/picture/car.svg" alt="Car">
@@ -61,62 +68,66 @@
         </div>
     </section>
 
-    <section class="shape-search bg-white" id="search">
+    <section class="shape-search bg-white pt-5" id="search">
         <!-- <div class="slider-shape"></div> -->
         <div class="container px-4 py">
             <div class="row search-inner bg-white p-2">
-                <div class="col p-2">
+                <div class="col-12 col-lg p-2">
                     <label class="form-label">
                         Tipe Driver
                     </label>
-                    <select class="form-select" id="tipe_driver" name="tipe-driver" onchange="onSelectDriverType()">
-                        <option>Pilih Tipe Driver</option>
+                    <select class="form-select" id="tipe_driver" name="tipe-driver">
+                        <option value="default">Pilih Tipe Driver</option>
                         <option value="dengan_sopir">Dengan Sopir</option>
                         <option value="tanpa_sopir">Tanpa Sopir (Lepas Kunci)</option>
                     </select>
-                    <!-- <input type="text" name="tipe-driver" placeholder="Pilih Tipe Driver"> -->
                 </div>
-                <div class="col p-2">
+                <div class="col-12 col-lg p-2">
                     <label class="form-label">
                         Tanggal
                         <i class="fa fa-calendar"></i>
                     </label>
-                    <input class="form-control" id="tanggal_booking" type="date" name="tipe-driver" placeholder="Pilih Tanggal"
-                        onchange="onSelectBookingDate()">
+                    <input class="form-control" id="tanggal_booking" type="date" name="tipe-driver"
+                        placeholder="Pilih Tanggal">
                 </div>
-                <div class="col p-2">
+                <div class="col-12 col-lg p-2">
                     <label class="form-label">
                         Waktu Jemput/Ambil
                         <i class="fa fa-clock-o"></i>
                     </label>
-                    <select id="waktu_booking" class="form-select" onchange="onSelectTimeBooking()">
-                        <option>Pilih waktu jemput</option>
-                        <option>08.00</option>
-                        <option>09.00</option>
-                        <option>10.00</option>
-                        <option>11.00</option>
-                        <option>12.00</option>
+                    <select id="waktu_booking" class="form-select">
+                        <option value="default">Pilih waktu jemput</option>
+                        <option>08:00</option>
+                        <option>09:00</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>12:00</option>
                     </select>
                 </div>
-                <div class="col p-2">
+                <div class="col-12 col-lg p-2">
                     <label class="form-label">
                         Jumlah Penumpang (optional)
                         <i class="fa fa-user"></i>
                     </label>
-                    <input class="form-control" id="total_penumpang" type="number" name="jumlah-penumpang" placeholder="Jumlah Penumpang"
-                        onchange="onSelectTotalPassenger()">
+                    <input class="form-control" id="total_penumpang" type="number" name="jumlah-penumpang"
+                        placeholder="Jumlah Penumpang">
                 </div>
-                <div class="col p-2 d-grid">
+                <div class="col-12 col-lg p-2 d-grid">
                     <label class="form-label">
                         &nbsp;
                     </label>
-                    <button type="submit" class="btn btn-success text-white">Cari Mobil</button>
+                    <button class="btn btn-success text-white" id="cari_mobil">Cari Mobil</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="result"></section>
+    <section class="pt-5">
+        <div class="container pt-5">
+            <div id="cars-container" class="row">
+            </div>
+        </div>
+    </section>
 
     <footer class="mt-5">
         <div class="container py-5">
@@ -146,19 +157,34 @@
                     <p class="fs-5">Connect with us</p>
                     <div class="d-flex mb-3">
                         <div class="me-3">
-                            <a href="#"><div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-facebook-f"></i></div></a>
+                            <a href="#">
+                                <div class="circle-icon circle-icon-primary"><i
+                                        class="fs-5 fa-brands fa-facebook-f"></i></div>
+                            </a>
                         </div>
                         <div class="me-3">
-                            <a href="#"><div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-instagram"></i></div></a>
+                            <a href="#">
+                                <div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-instagram"></i>
+                                </div>
+                            </a>
                         </div>
                         <div class="me-3">
-                            <a href="#"><div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-twitter"></i></div></a>
+                            <a href="#">
+                                <div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-twitter"></i>
+                                </div>
+                            </a>
                         </div>
                         <div class="me-3">
-                            <a href="#"><div class="circle-icon circle-icon-primary"><i class="fs-5 fa-regular fa-envelope"></i></div></a>
+                            <a href="#">
+                                <div class="circle-icon circle-icon-primary"><i class="fs-5 fa-regular fa-envelope"></i>
+                                </div>
+                            </a>
                         </div>
                         <div class="me-3">
-                            <a href="#"><div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-twitch"></i></div></a>
+                            <a href="#">
+                                <div class="circle-icon circle-icon-primary"><i class="fs-5 fa-brands fa-twitch"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -178,4 +204,5 @@
     <script type="text/javascript" src="./scripts/car.example.js"></script>
     <script type="text/javascript" src="./scripts/main.example.js"></script>
 </body>
+
 </html>

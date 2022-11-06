@@ -3,49 +3,47 @@
  * Siapa tau relevan! :)
  * */
 
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-
-// Coba olah data ini hehe :)
-console.log(params);
-
-const filterParam = {};
-
-const onSelectDriverType = async() => {
-    const originalCars = await Binar.listCars(filterParam);
-    const resultList = document.getElementById('result');
-    filterParam.tipe_driver = document.getElementById('tipe_driver').value;
-
-    resultList.innerHTML = originalCars.forEach((value) => {
-        return (`<li data-id="${ value.id }">
-        <span>${ value.name }</span>
-        <span>${ value.plate }</span>
-      </li>`)
-    });
-    
-    console.log(filterParam);
-    console.log("DATA :", originalCars);
-}
-
-const onSelectBookingDate = () => {
-    filterParam.tanggal_booking = document.getElementById('tanggal_booking').value;
-    console.log(filterParam);
-}
-
-const onSelectTimeBooking = () => {
-    filterParam.waktu_booking = document.getElementById('waktu_booking').value;
-    console.log(filterParam);
-}
-
-const onSelectTotalPassenger = () => {
-    filterParam.total_penumpang = document.getElementById('total_penumpang').value;
-    console.log(filterParam);
-}
-
 /*
  * Contoh penggunaan DOM di dalam class
  * */
 const app = new App();
-
 app.init().then(app.run);
 
+const cariButton = document.getElementById('cari_mobil')
+
+cariButton.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const tipeDriver = document.getElementById('tipe_driver')
+    const tanggalAmbil = document.getElementById('tanggal_booking')
+    const waktuAmbil = document.getElementById('waktu_booking')
+    const jumlahPenumpang = document.getElementById('total_penumpang')
+
+    if(tipeDriver.value == 'default') {
+        alert('Tipe driver harus diisi!')
+        return
+    }
+
+    if(tanggalAmbil.value == '') {
+        alert('Tanggal ambil harus diisi!')
+        return
+    }
+
+    if(waktuAmbil.value == 'default') {
+        alert('Waktu ambil harus diisi!')
+        return
+    }
+
+    let tanggalFilter = tanggalAmbil.value+"T"+waktuAmbil.value
+
+    let filter = (value) => {
+        let result = Date.parse(tanggalFilter) >= value.availableAt
+        if(jumlahPenumpang.value != '') {
+            result = result && value.capacity >= parseInt(jumlahPenumpang.value)
+        }
+        return result
+    }
+
+    app.clear()
+    app.init(filter).then(app.run);
+})

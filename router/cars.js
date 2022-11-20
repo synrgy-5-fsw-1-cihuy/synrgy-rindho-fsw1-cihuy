@@ -37,14 +37,14 @@ router.post('/', async (req, res) => {
     let fields = req.fields
     let files = req.files
 
-    let response = {}
+    if(fields.plate == undefined || fields.manufacture == undefined || fields.model == undefined || fields.rent_per_day == undefined || fields.capacity == undefined || fields.description == undefined || fields.available_at == undefined || fields.transmission == undefined || fields.available == undefined || fields.type == undefined || fields.year == undefined || files.image == undefined) {
+        res.end("Data not complete.")
+        return
+    }
 
     await cloudinaryConfig.uploader.upload(files.image.path, { folder: "cars" }, async (err, result) => {
         if (!!err) {
-            response.message = "Gagal upload file"
-            response.data = err
-
-            res.json(response)
+            res.end("Upload image failed.")
             return
         }
 
@@ -76,7 +76,11 @@ router.put('/:id', async (req, res) => {
     let fields = req.fields
     let files = req.files
     let params = req.params
-    let response = {}
+
+    if(fields.plate == undefined || fields.manufacture == undefined || fields.model == undefined || fields.rent_per_day == undefined || fields.capacity == undefined || fields.description == undefined || fields.available_at == undefined || fields.transmission == undefined || fields.available == undefined || fields.type == undefined || fields.year == undefined || files.image == undefined) {
+        res.end("Data not complete.")
+        return
+    }
 
     let carData = await carModel.findOne({
         where: {
@@ -90,41 +94,36 @@ router.put('/:id', async (req, res) => {
     }
 
     let filename = carData.image.split('/').at(-2) + '/' + carData.image.split('/').at(-1).split('.')[0]
+    
+    carData.rentPerDay = fields.rent_per_day
+    carData.capacity = fields.capacity
+    carData.description = fields.description
+    carData.availableAt = fields.available_at
+    carData.transmission = fields.transmission
+    carData.available = fields.available
+    carData.type = fields.type
+    carData.year = fields.year
+    carData.plate = fields.plate
+    carData.manufacture = fields.manufacture
+    carData.model = fields.model
 
     await cloudinaryConfig.uploader.upload(files.image.path, { folder: "cars" }, async (err, result) => {
         if (!!err) {
-            response.message = "Gagal upload file"
-            response.data = err
-
-            res.json(response)
+            res.end("Upload image failed.")
             return
         }
 
-        let data = {
-            plate: fields.plate,
-            manufacture: fields.manufacture,
-            model: fields.model,
-            image: result.secure_url,
-            rentPerDay: fields.rent_per_day,
-            capacity: fields.capacity,
-            description: fields.description,
-            availableAt: fields.available_at,
-            transmission: fields.transmission,
-            available: fields.available,
-            type: fields.type,
-            year: fields.year
-        }
+        carData.image = result.secure_url
 
-        await carModel.update(data, {
+        await carModel.update(carData, {
             where: {
                 'id': params.id
             }
         })
-        response = data
-
+        
         await cloudinaryConfig.uploader.destroy(filename)
         
-        res.json(response)
+        res.json(carData)
         return
     })
     return
@@ -134,7 +133,6 @@ router.patch('/:id', async (req, res) => {
     let fields = req.fields
     let files = req.files
     let params = req.params
-    let response = {}
 
     let carData = await carModel.findOne({
         where: {
@@ -149,70 +147,60 @@ router.patch('/:id', async (req, res) => {
     
     let filename = carData.image.split('/').at(-2) + '/' + carData.image.split('/').at(-1).split('.')[0]
 
-    let data = {}
-
     if(fields.plate != undefined) {
-        data.plate = fields.plate
+        carData.plate = fields.plate
     }
 
     if(fields.manufacture != undefined) {
-        data.manufacture = fields.manufacture
+        carData.manufacture = fields.manufacture
     }
 
     if(fields.model != undefined) {
-        data.model = fields.model
+        carData.model = fields.model
     }
 
     if(fields.rent_per_day != undefined) {
-        data.rentPerDay = fields.rent_per_day
+        carData.rentPerDay = fields.rent_per_day
     }
 
     if(fields.capacity != undefined) {
-        data.capacity = fields.capacity
+        carData.capacity = fields.capacity
     }
 
     if(fields.description != undefined) {
-        data.description = fields.description
+        carData.description = fields.description
     }
 
     if(fields.available_at != undefined) {
-        data.availableAt = fields.available_at
+        carData.availableAt = fields.available_at
     }
 
     if(fields.transmission != undefined) {
-        data.transmission = fields.transmission
+        carData.transmission = fields.transmission
     }
 
     if(fields.available != undefined) {
-        data.available = fields.available
+        carData.available = fields.available
     }
 
     if(fields.type != undefined) {
-        data.type = fields.type
+        carData.type = fields.type
     }
 
     if(fields.year != undefined) {
-        data.year = fields.year
+        carData.year = fields.year
     }
 
     if(files.image != undefined) {
         await cloudinaryConfig.uploader.upload(files.image.path, { folder: "cars" }, async (err, result) => {
             if (!!err) {
-                response.message = "Gagal upload file"
-                response.data = err
-    
-                res.json(response)
+                res.end("Upload image failed.")
                 return
             }
     
-            data.image = result.secure_url
+            carData.image = result.secure_url
     
-            await carModel.update(data, {
-                where: {
-                    'id': params.id
-                }
-            })
-            carData = await carModel.findOne({
+            await carModel.update(carData, {
                 where: {
                     'id': params.id
                 }
@@ -224,13 +212,7 @@ router.patch('/:id', async (req, res) => {
             return
         })
     } else {
-        await carModel.update(data, {
-            where: {
-                'id': params.id
-            }
-        })
-
-        carData = await carModel.findOne({
+        await carModel.update(carData, {
             where: {
                 'id': params.id
             }

@@ -1,6 +1,5 @@
 # Cars Management API
 ### endpoint
-(no fields validation assuming its on the front end)
 ####  METHOD GET :
 - '/api/cars' - get all cars
 - '/api/cars/[id]' - get one car based on **id**

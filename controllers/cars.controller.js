@@ -61,9 +61,8 @@ controller.insertOne = async (req, res) => {
         }
 
         await carModel.create(data)
-        response = data
 
-        res.json(response)
+        res.json(data)
         return
     })
     return
@@ -91,18 +90,20 @@ controller.updateFull = async (req, res) => {
     }
 
     let filename = carData.image.split('/').at(-2) + '/' + carData.image.split('/').at(-1).split('.')[0]
-    
-    carData.rentPerDay = fields.rent_per_day
-    carData.capacity = fields.capacity
-    carData.description = fields.description
-    carData.availableAt = fields.available_at
-    carData.transmission = fields.transmission
-    carData.available = fields.available
-    carData.type = fields.type
-    carData.year = fields.year
-    carData.plate = fields.plate
-    carData.manufacture = fields.manufacture
-    carData.model = fields.model
+
+    let data = {
+        plate: fields.plate,
+        manufacture: fields.manufacture,
+        model: fields.model,
+        rentPerDay: fields.rent_per_day,
+        capacity: fields.capacity,
+        description: fields.description,
+        availableAt: fields.available_at,
+        transmission: fields.transmission,
+        available: fields.available,
+        type: fields.type,
+        year: fields.year
+    }
 
     await cloudinaryConfig.uploader.upload(files.image.path, { folder: "cars" }, async (err, result) => {
         if (!!err) {
@@ -110,9 +111,9 @@ controller.updateFull = async (req, res) => {
             return
         }
 
-        carData.image = result.secure_url
+        data.image = result.secure_url
 
-        await carModel.update(carData, {
+        await carModel.update(data, {
             where: {
                 'id': params.id
             }
@@ -120,7 +121,7 @@ controller.updateFull = async (req, res) => {
         
         await cloudinaryConfig.uploader.destroy(filename)
         
-        res.json(carData)
+        res.json(data)
         return
     })
     return
@@ -144,48 +145,50 @@ controller.updatePartial = async (req, res) => {
     
     let filename = carData.image.split('/').at(-2) + '/' + carData.image.split('/').at(-1).split('.')[0]
 
+    let data = {}
+
     if(fields.plate != undefined) {
-        carData.plate = fields.plate
+        data.plate = fields.plate
     }
 
     if(fields.manufacture != undefined) {
-        carData.manufacture = fields.manufacture
+        data.manufacture = fields.manufacture
     }
 
     if(fields.model != undefined) {
-        carData.model = fields.model
+        data.model = fields.model
     }
 
     if(fields.rent_per_day != undefined) {
-        carData.rentPerDay = fields.rent_per_day
+        data.rentPerDay = fields.rent_per_day
     }
 
     if(fields.capacity != undefined) {
-        carData.capacity = fields.capacity
+        data.capacity = fields.capacity
     }
 
     if(fields.description != undefined) {
-        carData.description = fields.description
+        data.description = fields.description
     }
 
     if(fields.available_at != undefined) {
-        carData.availableAt = fields.available_at
+        data.availableAt = fields.available_at
     }
 
     if(fields.transmission != undefined) {
-        carData.transmission = fields.transmission
+        data.transmission = fields.transmission
     }
 
     if(fields.available != undefined) {
-        carData.available = fields.available
+        data.available = fields.available
     }
 
     if(fields.type != undefined) {
-        carData.type = fields.type
+        data.type = fields.type
     }
 
     if(fields.year != undefined) {
-        carData.year = fields.year
+        data.year = fields.year
     }
 
     if(files.image != undefined) {
@@ -195,9 +198,9 @@ controller.updatePartial = async (req, res) => {
                 return
             }
     
-            carData.image = result.secure_url
+            data.image = result.secure_url
     
-            await carModel.update(carData, {
+            await carModel.update(data, {
                 where: {
                     'id': params.id
                 }
@@ -205,17 +208,17 @@ controller.updatePartial = async (req, res) => {
     
             await cloudinaryConfig.uploader.destroy(filename)
             
-            res.json(carData)
+            res.json(data)
             return
         })
     } else {
-        await carModel.update(carData, {
+        await carModel.update(data, {
             where: {
                 'id': params.id
             }
         })
         
-        res.json(carData)
+        res.json(data)
     }
     return
 }
@@ -234,11 +237,15 @@ controller.delete = async (req, res) => {
         return
     }
 
+    let filename = carData.image.split('/').at(-2) + '/' + carData.image.split('/').at(-1).split('.')[0]
+
     await carModel.destroy({
         where: {
             'id': params.id
         }
     })
+    
+    await cloudinaryConfig.uploader.destroy(filename)
 
     res.end('Success deleting car.')
     return

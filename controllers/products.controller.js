@@ -45,9 +45,8 @@ controller.insertOne = async (req, res) => {
     }
 
     await productModel.create(data)
-    response = data
 
-    res.json(response)
+    res.json(data)
     return
 }
 
@@ -70,18 +69,20 @@ controller.updateFull = async (req, res) => {
         res.end('Product not found.')
         return
     }
-    
-    productData.name = fields.name
-    productData.description = fields.description
-    productData.price = fields.price
 
-    await productModel.update(productData, {
+    let data = {
+        name: fields.name,
+        description: fields.description,
+        price: fields.price
+    }
+
+    await productModel.update(data, {
         where: {
             'id': params.id
         }
     })
         
-    res.json(productData)
+    res.json(data)
     return
 }
 
@@ -100,25 +101,27 @@ controller.updatePartial = async (req, res) => {
         return
     }
 
+    let data = {}
+
     if(fields.name != undefined) {
-        productData.name = fields.name
+        data.name = fields.name
     }
 
     if(fields.description != undefined) {
-        productData.description = fields.description
+        data.description = fields.description
     }
 
     if(fields.price != undefined) {
-        productData.price = fields.price
+        data.price = fields.price
     }
 
-    await productModel.update(productData, {
+    await productModel.update(data, {
         where: {
             'id': params.id
         }
     })
     
-    res.json(productData)
+    res.json(data)
     return
 }
 

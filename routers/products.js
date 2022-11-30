@@ -58,8 +58,78 @@ router.get('/:id', productsController.getOne)
 
 router.post('/', productsController.insertOne)
 
+/** 
+ *  @swagger
+ *  /products/{id}:
+ *      put:
+ *          description: Update a product from the system that the user has access to
+ *          tags: [Products]
+ *          parameters:
+ *              - name: id
+ *                in: path
+ *                required: false
+ *          requestBody:
+ *              description: product data to be update
+ *              content:
+ *                  'application/json':
+ *                      examples:
+ *                          aqua:
+ *                              summary: Aqua product.
+ *                              value:
+ *                                  name: Aqua
+ *                                  description: Air pegunungan
+ *                                  price: 3000
+ * 
+ *                      schema:
+ *                          $ref: '#/components/schemas/Product'
+ *          reponses:
+ *              '200':
+ *                  description: Send back updated product
+ *                  content:
+ *                      'application/json':
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Product'
+ * 
+ */
 router.put('/:id', productsController.updateFull)
 
+/** 
+ *  @swagger
+ *  /products/{id}:
+ *      patch:
+ *          description: Update a product from the system that the user has access to
+ *          tags: [Products]
+ *          parameters:
+ *              - name: id
+ *                in: path
+ *                required: true
+ *          requestBody:
+ *              description: product data to be update
+ *              content:
+ *                  'application/json':
+ *                      examples:
+ *                          aqua:
+ *                              summary: Aqua product.
+ *                              value:
+ *                                  name: Aqua
+ *                                  description: Air pegunungan
+ *                                  price: 3000
+ * 
+ *                      schema:
+ *                          $ref: '#/components/schemas/Product'
+ *          reponses:
+ *              '200':
+ *                  description: Send back updated product
+ *                  content:
+ *                      'application/json':
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Product'
+ * 
+ */
 router.patch('/:id', productsController.updatePartial)
 
 router.delete('/:id', productsController.delete)

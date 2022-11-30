@@ -1,4 +1,5 @@
 'use strict';
+
 /** 
  *  @swagger
  *  components:
@@ -31,11 +32,21 @@
  *                      format: timestamptz
  *                      description: The date of the record creation.
  */
+
+
+
+const express = require('express')
+const router = express.Router()
+
+const productsController = require('../controllers/products.controller')
+
+
 /**
  *  @swagger
  *  /products:
  *      get:
  *          description: Returns all products from the system that the user has access to
+ *          tags: [Products]
  *          responses:
  *              '200':
  *                  description: List of products
@@ -46,14 +57,6 @@
  *                              items:
  *                                  $ref: '#/components/schemas/Product'
  */
-
-
-
-const express = require('express')
-const router = express.Router()
-
-const productsController = require('../controllers/products.controller')
-
 router.get('/', productsController.getAll)
 
 /**
@@ -79,6 +82,39 @@ router.post('/', productsController.insertOne)
 
 router.put('/:id', productsController.updateFull)
 
+/**
+ *  @swagger
+ *  /products/{id}:
+ *      patch:
+ *          description: Update a product from the system that the user has access to
+ *          tags: [Products]
+ *          parameters:
+ *              - name: id
+ *                in: path
+ *                required: true
+ *          requestBody:
+ *              description: product data to be update
+ *              content:
+ *                  'application/json':
+ *                      schema:
+ *                          $ref: '#/components/schemas/Product'
+ *                      examples:
+ *                          aqua:
+ *                              summary: Aqua product.
+ *                              value:
+ *                                  name: Aqua
+ *                                  description: Air pegunungan
+ *                                  price: 3000
+ *          responses:
+ *              '200':
+ *                  description: Send back updated product.
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Product'
+ */
 router.patch('/:id', productsController.updatePartial)
 
 router.delete('/:id', productsController.delete)

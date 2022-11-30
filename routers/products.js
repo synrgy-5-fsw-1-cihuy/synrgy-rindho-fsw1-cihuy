@@ -47,6 +47,8 @@
  *                                  $ref: '#/components/schemas/Product'
  */
 
+
+
 const express = require('express')
 const router = express.Router()
 
@@ -54,6 +56,23 @@ const productsController = require('../controllers/products.controller')
 
 router.get('/', productsController.getAll)
 
+/**
+ * @swagger
+ *   /products/{id}:
+ *      get:
+ *        summary: Get posts by id
+ *        tags: [Products]
+ *        parameters:
+ *          - in: path
+ *            name: id
+ *        responses:
+ *          "200":
+ *            description: Retrieve posts by id
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/Product'
+ */
 router.get('/:id', productsController.getOne)
 
 router.post('/', productsController.insertOne)

@@ -1,5 +1,6 @@
 'use strict';
-/** 
+
+/**
  *  @swagger
  *  components:
  *      schemas:
@@ -31,11 +32,18 @@
  *                      format: timestamptz
  *                      description: The date of the record creation.
  */
+
+const express = require('express');
+const router = express.Router();
+
+const productsController = require('../controllers/products.controller');
+
 /**
  *  @swagger
  *  /products:
  *      get:
  *          description: Returns all products from the system that the user has access to
+ *          tags: [Products]
  *          responses:
  *              '200':
  *                  description: List of products
@@ -46,17 +54,55 @@
  *                              items:
  *                                  $ref: '#/components/schemas/Product'
  */
+router.get('/', productsController.getAll);
 
-const express = require('express')
-const router = express.Router()
+/**
+ * @swagger
+ *   /products/{id}:
+ *      get:
+ *        summary: Get posts by id
+ *        tags: [Products]
+ *        parameters:
+ *          - in: path
+ *            name: id
+ *        responses:
+ *          "200":
+ *            description: Retrieve posts by id
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/Product'
+ */
+router.get('/:id', productsController.getOne);
 
-const productsController = require('../controllers/products.controller')
-
-router.get('/', productsController.getAll)
-
-router.get('/:id', productsController.getOne)
-
-router.post('/', productsController.insertOne)
+/**
+ *  @swagger
+ *  /products:
+ *      post:
+ *          description: Insert one product to the system
+ *          tags: [Products]
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Product'
+ *                      examples:
+ *                          shoes:
+ *                              summary: Shoes product.
+ *                              value:
+ *                                  name: Shoes
+ *                                  description: this is shoes
+ *                                  price: 5000
+ *          responses:
+ *              '200':
+ *                  description: Product object inserted
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
+ */
+router.post('/', productsController.insertOne);
 
 /** 
  *  @swagger
@@ -93,9 +139,9 @@ router.post('/', productsController.insertOne)
  *                                  $ref: '#/components/schemas/Product'
  * 
  */
-router.put('/:id', productsController.updateFull)
+router.put('/:id', productsController.updateFull);
 
-/** 
+/**
  *  @swagger
  *  /products/{id}:
  *      patch:
@@ -109,6 +155,8 @@ router.put('/:id', productsController.updateFull)
  *              description: product data to be update
  *              content:
  *                  'application/json':
+ *                      schema:
+ *                          $ref: '#/components/schemas/Product'
  *                      examples:
  *                          aqua:
  *                              summary: Aqua product.
@@ -116,22 +164,18 @@ router.put('/:id', productsController.updateFull)
  *                                  name: Aqua
  *                                  description: Air pegunungan
  *                                  price: 3000
- * 
- *                      schema:
- *                          $ref: '#/components/schemas/Product'
- *          reponses:
+ *          responses:
  *              '200':
- *                  description: Send back updated product
+ *                  description: Send back updated product.
  *                  content:
- *                      'application/json':
+ *                      application/json:
  *                          schema:
  *                              type: array
  *                              items:
  *                                  $ref: '#/components/schemas/Product'
- * 
  */
-router.patch('/:id', productsController.updatePartial)
+router.patch('/:id', productsController.updatePartial);
 
-router.delete('/:id', productsController.delete)
+router.delete('/:id', productsController.delete);
 
 module.exports = router

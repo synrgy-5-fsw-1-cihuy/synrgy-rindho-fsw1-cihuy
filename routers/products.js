@@ -60,7 +60,6 @@ router.get('/', productsController.getAll);
  * @swagger
  *   /products/{id}:
  *      get:
- *        summary: Get posts by id
  *        tags: [Products]
  *        parameters:
  *          - in: path
@@ -186,7 +185,7 @@ router.patch('/:id', productsController.updatePartial);
 /**
  *  @swagger
  *  /products/{id}:
- *      get:
+ *      delete:
  *          description: Delete one product from the system that the user has access to
  *          tags: [Products]
  *          parameters:

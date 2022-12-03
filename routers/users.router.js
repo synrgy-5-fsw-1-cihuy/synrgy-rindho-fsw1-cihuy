@@ -40,12 +40,8 @@ const usersMiddleware = require('../middleware/users.middleware')
 const usersController = require('../controllers/users.controller')
 
 router.get('/test',
-    usersMiddleware.init,
-    usersMiddleware.checkUser,
-    usersMiddleware.isSuperadmin,
     async (req, res) => {
-        res.json(req.currentUser)
-        return
+        return res.json('test')
     }
 )
 
@@ -74,7 +70,6 @@ router.get('/test',
  *                      application/json: {}
  */
 router.post('/register/admin',
-    usersMiddleware.init,
     usersMiddleware.checkUser,
     usersMiddleware.isSuperadmin,
     usersController.registerAdmin
@@ -151,7 +146,6 @@ router.post('/login',
  *                              $ref: '#/components/schemas/User'
  */
 router.get('/me',
-    usersMiddleware.init,
     usersMiddleware.checkUser,
     usersController.me
 )

@@ -8,14 +8,12 @@ controller.getAll = async (req, res) => {
     try {
         let data = await carService.carList()
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "Cars found!",
             "data" : data
         })
-        return
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
+        return res.status(400).json({ "error": error })
     }
 }
 
@@ -29,14 +27,12 @@ controller.getOne = async (req, res) => {
             throw 'Car not found.'
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "Car found!",
             "data" : data
         })
-        return
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
+        return res.status(400).json({ "error": error })
     }
 }
 
@@ -73,14 +69,12 @@ controller.insertOne = async (req, res) => {
 
         await carService.insertCar(req.currentUser, data)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "Success inserting car!",
             "data" : data
         })
-        return
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
+        return res.status(400).json({ "error": error })
     }
 }
 
@@ -128,13 +122,12 @@ controller.updateFull = async (req, res) => {
 
         await carService.updateCarById(req.currentUser, data, params.id)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "Success updating car!",
             "data" : data
         })
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
+        return res.status(400).json({ "error": error })
     }
 }
 
@@ -213,13 +206,12 @@ controller.updatePartial = async (req, res) => {
         
         await carService.updateCarById(req.currentUser, data, params.id)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "Success updating car!",
             "data" : data
         })
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
+        return res.status(400).json({ "error": error })
     }
 
 }
@@ -240,12 +232,9 @@ controller.delete = async (req, res) => {
 
         await carService.deleteCar(req.currentUser, params.id)
 
-        res.status(200).json({"message" : 'Success deleting car.'})
-        return
+        return res.status(200).json({"message" : 'Success deleting car.'})
     } catch (error) {
-        res.status(400).json({ "error": error })
-        return
-        
+        return res.status(400).json({ "error": error })
     }
 }
 

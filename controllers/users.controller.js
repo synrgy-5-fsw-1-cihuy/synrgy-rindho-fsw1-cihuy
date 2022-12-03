@@ -25,17 +25,15 @@ controller.registerMember = async (req, res) => {
 
         await userService.insertUser(data)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "User created!",
             "data" : {
                 "email" : fields.email,
                 "role" : "member"
             }
         })
-        return
     } catch (error) {
-        res.status(400).json({"error" : error})
-        return
+        return res.status(400).json({"error" : error})
     }
 }
 
@@ -59,17 +57,15 @@ controller.registerAdmin = async (req, res) => {
 
         await userService.insertUser(data)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message" : "User created!",
             "data" : {
                 "email" : fields.email,
                 "role" : "admin"
             }
         })
-        return
     } catch (error) {
-        res.status(400).json({"error" : error})
-        return
+        return res.status(400).json({"error" : error})
     }
 }
 
@@ -97,28 +93,24 @@ controller.login = async (req, res) => {
         
         let token = jwt.sign(data)
 
-        res.status(200).json({
+        return res.status(200).json({
             "message": "Logged successfully",
             "data" : {
                 "token": token
             }
         })
-        return
     } catch (error) {
-        res.status(400).json({"error" : error})
-        return
+        return res.status(400).json({"error" : error})
     }
 }
 
 controller.me = async (req, res) => {
     try {
-        res.status(200).json({
+        return res.status(200).json({
             "data" : req.currentUser
         })
-        return
     } catch (error) {
-        res.status(400).json({"error" : error})
-        return
+        return res.status(400).json({"error" : error})
     }
 }
 

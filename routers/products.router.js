@@ -83,7 +83,7 @@ router.get('/:id', productsController.getOne);
  *          requestBody:
  *              required: true
  *              content:
- *                  application/json:
+ *                  'multipart/form-data':
  *                      schema:
  *                          $ref: '#/components/schemas/Product'
  *                      examples:
@@ -117,7 +117,7 @@ router.post('/', productsController.insertOne);
  *              description: product data to be update
  *              required: true
  *              content:
- *                  'application/json':
+ *                  'multipart/form-data':
  *                      examples:
  *                          aqua:
  *                              summary: Aqua product.
@@ -128,7 +128,7 @@ router.post('/', productsController.insertOne);
  * 
  *                      schema:
  *                          $ref: '#/components/schemas/Product'
- *          reponses:
+ *          responses:
  *              '200':
  *                  description: Send back updated product
  *                  content:
@@ -154,7 +154,7 @@ router.put('/:id', productsController.updateFull);
  *          requestBody:
  *              description: product data to be update
  *              content:
- *                  'application/json':
+ *                  'multipart/form-data':
  *                      schema:
  *                          $ref: '#/components/schemas/Product'
  *                      examples:
@@ -190,7 +190,7 @@ router.patch('/:id', productsController.updatePartial);
  *          tags: [Products]
  *          parameters:
  *              - name: id
- *                in: query
+ *                in: path
  *                description: Id of product to get.
  *                required: true
  *          responses:

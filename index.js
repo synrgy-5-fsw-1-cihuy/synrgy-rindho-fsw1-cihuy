@@ -3,15 +3,17 @@ const express = require('express')
 const formidableMiddleware = require('express-formidable')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
-const { PORT = 8002 } = process.env
-
-// Custom Modules
-const cars = require('./routers/cars')
-const products = require('./routers/products')
 
 // Init
+require('dotenv').config();
+const { PORT = 3000 } = process.env
 const app = express()
 app.use(formidableMiddleware())
+
+// Custom Modules
+const cars = require('./routers/cars.router')
+const products = require('./routers/products.router')
+const users = require('./routers/users.router')
 
 const options = {
     definition: {
@@ -33,13 +35,13 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:8002/api/",
+                url: "http://localhost:3000/api/",
             },
         ],
     },
     apis: [
-        "./routers/cars.js",
-        "./routers/products.js"
+        "./routers/cars.router.js",
+        "./routers/users.router.js"
     ],
 };
 
@@ -48,6 +50,9 @@ const specs = swaggerJsDoc(options);
 // Routing
 app.use('/api/cars', cars)
 app.use('/api/products', products)
+app.use('/api/users', users)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.listen(PORT)
+app.listen(PORT, () => {
+    console.log(`App listened on ${PORT} port.`)
+})

@@ -12,18 +12,10 @@ exportModule.insertOne = async (data) => {
     return await model.create(data)
 }
 
-exportModule.getAll = async () => {
-    return await model.findAll()
-}
-
 exportModule.getAll = async (where) => {
     return await model.findAll({
         where: where
     })
-}
-
-exportModule.getOne = async () => {
-    return await model.findOne()
 }
 
 exportModule.getOne = async (where) => {

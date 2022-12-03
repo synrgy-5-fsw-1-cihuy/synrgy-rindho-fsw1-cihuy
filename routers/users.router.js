@@ -70,8 +70,7 @@ router.get('/test',
  *                      application/json: {}
  */
 router.post('/register/admin',
-    usersMiddleware.checkUser,
-    usersMiddleware.isSuperadmin,
+    usersMiddleware.checkUser('superadmin'),
     usersController.registerAdmin
 )
 
@@ -146,7 +145,7 @@ router.post('/login',
  *                              $ref: '#/components/schemas/User'
  */
 router.get('/me',
-    usersMiddleware.checkUser,
+    usersMiddleware.checkUser(),
     usersController.me
 )
 

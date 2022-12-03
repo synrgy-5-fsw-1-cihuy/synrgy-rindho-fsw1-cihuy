@@ -169,8 +169,7 @@ router.get('/:id',
  *                              $ref: '#/components/schemas/Car'
  */
 router.post('/',
-    usersMiddleware.checkUser,
-    usersMiddleware.isAdmin,
+    usersMiddleware.checkUser('admin'),
     carsController.insertOne
 )
 
@@ -216,8 +215,7 @@ router.post('/',
  *                              $ref: '#/components/schemas/Car'
  */
 router.put('/:id',
-    usersMiddleware.checkUser,
-    usersMiddleware.isAdmin,
+    usersMiddleware.checkUser('admin'),
     carsController.updateFull
 )
 
@@ -262,8 +260,7 @@ router.put('/:id',
  *                              $ref: '#/components/schemas/Car'
  */
 router.patch('/:id',
-    usersMiddleware.checkUser,
-    usersMiddleware.isAdmin,
+    usersMiddleware.checkUser('admin'),
     carsController.updatePartial
 )
 
@@ -285,8 +282,7 @@ router.patch('/:id',
  *                      application/json: {}
  */
 router.delete('/:id',
-    usersMiddleware.checkUser,
-    usersMiddleware.isAdmin,
+    usersMiddleware.checkUser('admin'),
     carsController.delete
 )
 

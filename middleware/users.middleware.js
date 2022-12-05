@@ -16,7 +16,7 @@ exportModule.checkUser = (role) => {
             if (req.auth.email === undefined) return res.status(401).json({ "error": "Unauthorized access" })
             if (req.auth.role === undefined) return res.status(401).json({ "error": "Unauthorized access" })
         
-            let check = await await userService.oneUserByEmail(req.auth.email)
+            let check = await userService.oneUserByEmail(req.auth.email)
         
             if (check == null) {
                 return res.status(401).json({ "error": "Unauthorized access. Please login again." })

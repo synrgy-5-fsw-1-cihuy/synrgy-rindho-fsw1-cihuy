@@ -1,34 +1,34 @@
 const {
-  DB_USER = "",
-  DB_PASSWORD = "",
-  DB_NAME = "bcr",
-  DB_HOST = "127.0.0.1",
-  DB_PORT = "5432",
+  PGUSER = "",
+  PGPASSWORD = "",
+  PGDATABASE = "bcr",
+  PGHOST = "localhost",
+  PGPORT = "5432",
 } = process.env;
 
 module.exports = {
   development: {
-    username: DB_USER,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}_development`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: PGUSER,
+    password: PGPASSWORD,
+    database: `${PGDATABASE}_development`,
+    host: PGHOST,
+    port: PGPORT,
     dialect: "postgres"
   },
   test: {
-    username: DB_USER,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}_test`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: PGUSER,
+    password: PGPASSWORD,
+    database: `${PGDATABASE}_test`,
+    host: PGHOST,
+    port: PGPORT,
     dialect: "postgres"
   },
   production: {
-    username: DB_USER,
-    password: DB_PASSWORD,
-    database: `${DB_NAME}`,
-    host: DB_HOST,
-    port: DB_PORT,
+    username: PGUSER,
+    password: PGPASSWORD,
+    database: `${PGDATABASE}`,
+    host: PGHOST,
+    port: PGPORT,
     dialect: "postgres"
   }
 }
